@@ -28,8 +28,8 @@ public interface OgrenciRepository extends JpaRepository<Ogrenci, Long> {
     @Query(value = QUESTION_4, nativeQuery = true)
     List<Ogrenci> find10AGirls();
 
-    // 5) Öğrenci numarası 5 ile 10 arasında olan Kız öğrencileri listeleyiniz.
-    String QUESTION_5 = "SELECT * FROM ogrenci WHERE \"ogrno\" BETWEEN 5 AND 10 AND cinsiyet = 'K';";
+    // 5) Öğrenci numarası 5 ile 10 arasında olan Kız öğrencileri listeleyiniz. (Tırnaksız deneme)
+    String QUESTION_5 = "select * from ogrenci where cinsiyet='K' AND ogrno > 5 AND ogrno < 10;";
     @Query(value = QUESTION_5, nativeQuery = true)
     List<Ogrenci> findGirlsWithOgrno();
 
@@ -38,23 +38,23 @@ public interface OgrenciRepository extends JpaRepository<Ogrenci, Long> {
     @Query(value = QUESTION_6, nativeQuery = true)
     List<Ogrenci> findStudentsAlphabetically();
 
-    // 7) 10A sınıfındaki öğrencileri okul numarasına göre azalan olarak sıralayınız.
-    String QUESTION_7 = "SELECT * FROM ogrenci WHERE sinif = '10A' ORDER BY \"ogrno\" DESC;";
+    // 7) 10A sınıfındaki öğrencileri okul numarasına göre azalan olarak sıralayınız. (Tırnaksız deneme)
+    String QUESTION_7 = "SELECT * FROM ogrenci WHERE sinif = '10A' ORDER BY ogrno DESC;";
     @Query(value = QUESTION_7, nativeQuery = true)
     List<Ogrenci> find10AStudentsByOgrNo();
 
-    // 8) Öğrenciler tablosundaki en genç öğrenciyi listeleyiniz. (Sütun adı 'dtarih' olarak düzeltildi)
+    // 8) Öğrenciler tablosundaki en genç öğrenciyi listeleyiniz.
     String QUESTION_8 = "SELECT * FROM ogrenci ORDER BY dtarih DESC LIMIT 1;";
     @Query(value = QUESTION_8, nativeQuery = true)
     Ogrenci findYoungestStudent();
 
-    // 9) Öğrenciler tablosundaki en yaşlı öğrenciyi listeleyiniz. (Sütun adı 'dtarih' olarak düzeltildi)
+    // 9) Öğrenciler tablosundaki en yaşlı öğrenciyi listeleyiniz.
     String QUESTION_9 = "SELECT * FROM ogrenci ORDER BY dtarih ASC LIMIT 1;";
     @Query(value = QUESTION_9, nativeQuery = true)
     Ogrenci findElderStudent();
 
     // 10) İkinci harfi E olan ogrencileri listeleyiniz.
-    String QUESTION_10 = "SELECT * FROM ogrenci WHERE ad LIKE '_E%';";
+    String QUESTION_10 = "SELECT * FROM ogrenci WHERE ad ILIKE '_E%';";
     @Query(value = QUESTION_10, nativeQuery = true)
     List<Ogrenci> findStudentsSecondLetterOfN();
 
